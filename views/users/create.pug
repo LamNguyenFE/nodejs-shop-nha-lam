@@ -1,0 +1,33 @@
+extends ../layouts/common.pug
+block content
+    h1 Users Create
+
+    if errors
+        each error in errors
+            .alert.alert-danger= error
+
+    form(action="/users/create", method="POST", enctype="multipart/form-data")
+        
+        form-group
+            label(for="name") Name
+            input.form-control(type="text", name = "name", value=values? values.name :'' )
+            small.form-text.text-muted Type your name
+        form-group
+            label(for="email") Email
+            input.form-control(type="email", name = "email", value=values? values.email :'' )
+            small.form-text.text-muted Type your email
+        form-group
+            label(for="password") password
+            input.form-control(type="password", name = "password", value=values? values.password :'' )
+            small.form-text.text-muted Type your password
+        form-group
+            label(for="phone") Phone
+            input.form-control(type="text", name = "phone", value=values? values.phone :'')   
+            small.form-text.text-muted Something
+        form-group
+            label(for="avatar") Avatar
+            input.form-control(type="file", name = "avatar", value=values? values.avatar :'')   
+            small.form-text.text-muted Choose you avatar
+        input(type="hidden", id="_csrf", name="_csrf", value=csrfToken)
+        form-group       
+            button.btn.btn-primary(type="submit") Create
